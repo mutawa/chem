@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
 
-function Molecule({ x, y, index, temp, name, color, isBoil = false }) {
+function Molecule({
+  x,
+  y,
+  index,
+  temp,
+  name,
+  color,
+  isBoil = false,
+  gasColor,
+}) {
   const map = (value, in_min, in_max, out_min, out_max) => {
     return (
       ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
@@ -21,31 +30,36 @@ function Molecule({ x, y, index, temp, name, color, isBoil = false }) {
 
   return (
     <g transform={`translate(${x}, ${y})`}>
-      {isBoil && temp > 95 && (
+      {isBoil && (
         <motion.g
           animate={{
-            y: [0, -magnitude * 10],
+            y: [0, -magnitude * 20],
             x: [0, magnitude * Math.random(), -magnitude * Math.random(), 0],
+            opacity: [1, 0.5, 0.2, 0],
           }}
           transition={{
-            duration: 1 + Math.random() * 2,
+            duration: 1 + Math.random() * 4,
             repeat: Infinity,
             delay: (index + 1) * 0.5 * Math.random(),
           }}
         >
-          <circle cx="0" cy="0" r="5" fill={color} />
+          <circle cx="0" cy="0" r="5" fill={gasColor} />
           <text dy={".3em"} textAnchor="middle" fontSize="10" fontWeight={400}>
-            {name}
+            G
           </text>
         </motion.g>
       )}
       {!isBoil && (
         <motion.g
           animate={{
-            y: [0, -magnitude, 0],
-            x: [0, magnitude, 0, -magnitude, 0],
+            y: [0, -magnitude * Math.random(), 0, magnitude * Math.random(), 0],
+            x: [0, magnitude * Math.random(), 0, -magnitude * Math.random(), 0],
           }}
-          transition={{ duration: 2, repeat: Infinity, delay: index * 0.1 }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            delay: index * 0.1 * Math.random(),
+          }}
         >
           <circle cx="0" cy="0" r="5" fill={color} />
           <text dy={".3em"} textAnchor="middle" fontSize="10" fontWeight={400}>

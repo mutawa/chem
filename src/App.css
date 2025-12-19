@@ -111,3 +111,30 @@ img {
   font-size: 1.5em;
   font-weight: bold;
 }
+
+.caption {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+input[type="range"] {
+  cursor: pointer;
+  touch-action: pan-x;
+  overscroll-behavior: contain;
+}
+
+input[type="range"] {
+  height: 16px; /* track thickness */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 28px;
+  height: 28px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+}
